@@ -21,7 +21,13 @@ class RecentChats extends StatelessWidget {
                 final Message chat = chats[index];
                 return Container(
                   margin: EdgeInsets.only(top: 5.0, bottom: 20, right: 20.0),
-                  padding: EdgeInsets.symmetric(horizontal: 20.0, vertical: 10.0),
+                  padding:
+                      EdgeInsets.symmetric(horizontal: 20.0, vertical: 10.0),
+                  decoration: BoxDecoration(
+                      color: chat.unread ? Color(0xffffefee) : Colors.white,
+                      borderRadius: BorderRadius.only(
+                          topRight: Radius.circular(20),
+                          bottomRight: Radius.circular(20.0))),
                   child: Row(
                     children: <Widget>[
                       Row(
@@ -41,7 +47,8 @@ class RecentChats extends StatelessWidget {
                                         fontWeight: FontWeight.bold,
                                         fontSize: 15.0)),
                                 Container(
-                                  width: MediaQuery.of(context).size.width * 0.44,
+                                  width:
+                                      MediaQuery.of(context).size.width * 0.44,
                                   child: Text(
                                     chat.text,
                                     style: TextStyle(
@@ -56,7 +63,29 @@ class RecentChats extends StatelessWidget {
                         ],
                       ),
                       Column(
-                        children: <Widget>[Text(chat.time), Text('new')],
+                        children: <Widget>[
+                          Text(
+                            chat.time,
+                            style: TextStyle(
+                                color: Colors.grey,
+                                fontSize: 13.0,
+                                fontWeight: FontWeight.bold),
+                          ),
+                          chat.unread
+                              ? Container(
+                                  width: 40,
+                                  height: 20,
+                                  decoration: BoxDecoration(
+                                      borderRadius: BorderRadius.circular(30.0),
+                                      color: Theme.of(context).primaryColor),
+                                  alignment: Alignment.center,
+                                  child: Text('new',
+                                      style: TextStyle(
+                                          color: Colors.white,
+                                          fontSize: 13.0,
+                                          fontWeight: FontWeight.bold)))
+                              : Text(''),
+                        ],
                       )
                     ],
                   ),
